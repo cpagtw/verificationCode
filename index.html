@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>滑块验证解锁</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./verification.css" />
+</head>
+
+<body>
+    <div id="verification"></div>
+    <div class="btn">点击</div>
+    <script>
+        const verification = new verificationCode("verification", {
+            getUrl: "/user/user/drag-code", // 获取验证码信息 接口url
+            postUrl: "/user/user/drag-code", // 校验验证码信息 接口url
+            api: axios // 接口请求方式
+        })
+        document.querySelector(".btn").addEventListener("click", () => {
+            if (verification.verification_id) {
+                alert("校验成功 进行下一步")
+            } else {
+                alert("校验失败重新进行验证")
+            }
+        })
+    </script>
+
+</body>
+
+</html>
